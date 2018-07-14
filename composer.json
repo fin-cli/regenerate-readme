@@ -26,8 +26,8 @@
 	},
 	"extra": {
 		"php-composter-hooks": {
-			"10.pre-commit": "WP_CLI\\RegenerateReadme\\Regenerator::pre-commit",
-			"10.post-commit": "WP_CLI\\RegenerateReadme\\Regenerator::post-commit"
+			"10.pre-commit": "WP_CLI\\RegenerateReadme\\Regenerator::pre_commit",
+			"10.post-commit": "WP_CLI\\RegenerateReadme\\Regenerator::post_commit"
 		},
         "readme": {
             "sections": [
