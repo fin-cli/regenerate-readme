@@ -1,6 +1,6 @@
 {
 	"name": "wp-cli/regenerate-readme",
-	"description": "PHP Composter action to regenerate the README.md file (precommit).",
+	"description": "PHP Composter action to regenerate the README.md file (pre-commit + post-commit).",
 	"license": "MIT",
 	"authors": [
 		{
@@ -26,7 +26,8 @@
 	},
 	"extra": {
 		"php-composter-hooks": {
-			"10.pre-commit": "WP_CLI\\RegenerateReadme\\Regenerator::preCommit"
+			"10.pre-commit": "WP_CLI\\RegenerateReadme\\Regenerator::pre-commit",
+			"10.post-commit": "WP_CLI\\RegenerateReadme\\Regenerator::post-commit"
 		},
         "readme": {
             "sections": [

@@ -1,6 +1,7 @@
 <?php
 /**
- * PHP Composter action to regenerate the README.md file (precommit).
+ * PHP Composter action to regenerate the README.md file
+ * (pre-commit + post-commit).
  *
  * @package   WP_CLI\RegenerateReadme
  * @author    Alain Schlesser <alain.schlesser@gmail.com>
@@ -9,7 +10,6 @@
 
 namespace WP_CLI\RegenerateReadme;
 
-use Exception;
 use PHPComposter\PHPComposter\BaseAction;
 use WP_CLI;
 
@@ -21,24 +21,42 @@ use WP_CLI;
  * @package WP_CLI\RegenerateReadme
  * @author  Alain Schlesser <alain.schlesser@gmail.com>
  */
-class Regenerator extends BaseAction {
+final class Regenerator extends BaseAction {
+
+	const MARKER_FILE = '.commit-readme-md';
 
 	/**
-	 * Run PHP Code Sniffer over PHP files as pre-commit hook.
+	 * Try to regenerate the README.md file and memorize whether changes were
+	 * detected.
 	 *
 	 * @since 0.1.0
 	 */
-	public function preCommit() {
+	public function pre_commit() {
+		if ( file_exists( self::MARKER_FILE ) ) {
+			unlink( self::MARKER_FILE );
+		}
 
-		try {
-			ob_start();
-			shell_exec( 'vendor/bin/wp scaffold package-readme . --force' );
-			ob_clean();
-		} catch ( Exception $exception ) {
-			echo 'Failed to regenerate README.md file. Aborting commit.' . PHP_EOL;
-			exit( 1 );
+		$hash = md5( file_get_contents( 'README.md' ) );
+		shell_exec( 'vendor/bin/wp scaffold package-readme . --force > /dev/null 2>&1' );
+		if ( $hash === md5( file_get_contents( 'README.md' ) ) ) {
+			return;
+		}
+
+		shell_exec( 'touch ' . self::MARKER_FILE );
+	}
+
+	/**
+	 * If the marker file is found, add the modified README.md file to the
+	 * commit and amend it.
+	 *
+	 * @since 0.1.0
+	 */
+	public function post_commit() {
+		if ( file_exists( self::MARKER_FILE ) ) {
+			unlink( self::MARKER_FILE );
 		}
 
 		shell_exec( 'git add README.md' );
+		shell_exec( 'git commit --amend -C HEAD --no-verify' );
 	}
 }
