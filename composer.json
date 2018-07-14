@@ -1,0 +1,60 @@
+{
+	"name": "wp-cli/regenerate-readme",
+	"description": "PHP Composter action to regenerate the README.md file (precommit).",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Alain Schlesser",
+			"email": "alain.schlesser@gmail.com"
+		}
+	],
+	"type": "php-composter-action",
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"require": {
+		"php-composter/php-composter": "^0.2",
+		"wp-cli/scaffold-package-command": "^0.4.0",
+		"wp-cli/wp-cli": "dev-4748-split-off-bundle"
+	},
+	"require-dev": {
+		"wp-cli/wp-cli-tests": "dev-master"
+	},
+	"autoload": {
+		"psr-4": {
+			"WP_CLI\\RegenerateReadme\\": "src/"
+		}
+	},
+	"extra": {
+		"php-composter-hooks": {
+			"10.pre-commit": "WP_CLI\\RegenerateReadme\\Regenerator::preCommit"
+		},
+        "readme": {
+            "sections": [
+	            "Installing",
+                "Using",
+                "Contributing",
+                "Support"
+            ],
+            "installing": {
+                "body": ".readme-partials/INSTALLING.md"
+            },
+            "using": {
+                "body": ".readme-partials/USING.md"
+            },
+            "show_powered_by": false
+        }
+    },
+	"scripts": {
+        "lint": "run-linter-tests",
+        "phpcs": "run-phpcs-tests",
+        "phpunit": "run-php-unit-tests",
+        "behat": "run-behat-tests",
+        "prepare-tests": "install-package-tests",
+        "test": [
+            "@lint",
+            "@phpcs",
+            "@phpunit",
+            "@behat"
+        ]
+	}
+}
