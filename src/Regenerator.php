@@ -31,10 +31,9 @@ class Regenerator extends BaseAction {
 	public function preCommit() {
 
 		try {
-			WP_CLI::runcommand(
-				'scaffold package-readme . --force',
-				[ 'return' => true ]
-			);
+			ob_start();
+			shell_exec( 'vendor/bin/wp scaffold package-readme . --force' );
+			ob_clean();
 		} catch ( Exception $exception ) {
 			echo 'Failed to regenerate README.md file. Aborting commit.' . PHP_EOL;
 			exit( 1 );
