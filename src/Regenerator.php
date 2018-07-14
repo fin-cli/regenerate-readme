@@ -52,9 +52,11 @@ final class Regenerator extends BaseAction {
 	 * @since 0.1.0
 	 */
 	public function post_commit() {
-		if ( file_exists( self::MARKER_FILE ) ) {
-			unlink( self::MARKER_FILE );
+		if ( ! file_exists( self::MARKER_FILE ) ) {
+			return;
 		}
+
+		unlink( self::MARKER_FILE );
 
 		shell_exec( 'git add README.md' );
 		shell_exec( 'git commit --amend -C HEAD --no-verify' );
