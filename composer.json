@@ -14,7 +14,7 @@
 	"require": {
 		"php-composter/php-composter": "^0",
 		"wp-cli/scaffold-package-command": "^0",
-		"wp-cli/wp-cli": "dev-4748-split-off-bundle"
+		"wp-cli/wp-cli": "*"
 	},
 	"require-dev": {
 		"wp-cli/wp-cli-tests": "dev-master"
