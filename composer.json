@@ -12,12 +12,12 @@
 	"minimum-stability": "dev",
 	"prefer-stable": true,
 	"require": {
-		"php-composter/php-composter": "^0",
-		"wp-cli/scaffold-package-command": "^0",
-		"wp-cli/wp-cli": "*"
+		"php-composter/php-composter": "*",
+		"wp-cli/scaffold-package-command": "*",
+		"wp-cli/wp-cli": "^2"
 	},
 	"require-dev": {
-		"wp-cli/wp-cli-tests": "dev-master"
+		"wp-cli/wp-cli-tests": "*"
 	},
 	"autoload": {
 		"psr-4": {
@@ -57,5 +57,11 @@
             "@phpunit",
             "@behat"
         ]
+	},
+	"config": {
+		"platform": {
+			"php": "5.4"
+		},
+		"sort-packages": true
 	}
 }
