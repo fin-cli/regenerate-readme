@@ -1,5 +1,5 @@
 {
-	"name": "wp-cli/regenerate-readme",
+	"name": "fp-cli/regenerate-readme",
 	"description": "PHP Composter action to regenerate the README.md file (pre-commit + post-commit).",
 	"license": "MIT",
 	"authors": [
@@ -13,21 +13,21 @@
 	"prefer-stable": true,
 	"require": {
 		"php-composter/php-composter": "*",
-		"wp-cli/scaffold-package-command": "*",
-		"wp-cli/wp-cli": "^2"
+		"fp-cli/scaffold-package-command": "*",
+		"fp-cli/fp-cli": "^2"
 	},
 	"require-dev": {
-		"wp-cli/wp-cli-tests": "*"
+		"fp-cli/fp-cli-tests": "*"
 	},
 	"autoload": {
 		"psr-4": {
-			"WP_CLI\\RegenerateReadme\\": "src/"
+			"FP_CLI\\RegenerateReadme\\": "src/"
 		}
 	},
 	"extra": {
 		"php-composter-hooks": {
-			"10.pre-commit": "WP_CLI\\RegenerateReadme\\Regenerator::pre_commit",
-			"10.post-commit": "WP_CLI\\RegenerateReadme\\Regenerator::post_commit"
+			"10.pre-commit": "FP_CLI\\RegenerateReadme\\Regenerator::pre_commit",
+			"10.post-commit": "FP_CLI\\RegenerateReadme\\Regenerator::post_commit"
 		},
         "readme": {
             "sections": [

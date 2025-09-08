@@ -3,22 +3,22 @@
  * PHP Composter action to regenerate the README.md file
  * (pre-commit + post-commit).
  *
- * @package   WP_CLI\RegenerateReadme
+ * @package   FP_CLI\RegenerateReadme
  * @author    Alain Schlesser <alain.schlesser@gmail.com>
  * @license   MIT
  */
 
-namespace WP_CLI\RegenerateReadme;
+namespace FP_CLI\RegenerateReadme;
 
 use PHPComposter\PHPComposter\BaseAction;
-use WP_CLI;
+use FP_CLI;
 
 /**
  * Class Regenerator.
  *
  * @since   0.1.0
  *
- * @package WP_CLI\RegenerateReadme
+ * @package FP_CLI\RegenerateReadme
  * @author  Alain Schlesser <alain.schlesser@gmail.com>
  */
 final class Regenerator extends BaseAction {
@@ -37,7 +37,7 @@ final class Regenerator extends BaseAction {
 		}
 
 		$hash = md5( file_get_contents( 'README.md' ) );
-		shell_exec( 'vendor/bin/wp scaffold package-readme . --force > /dev/null 2>&1' );
+		shell_exec( 'vendor/bin/fp scaffold package-readme . --force > /dev/null 2>&1' );
 		if ( $hash === md5( file_get_contents( 'README.md' ) ) ) {
 			return;
 		}
