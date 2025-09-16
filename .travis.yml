@@ -23,7 +23,7 @@ cache:
 env:
   global:
     - PATH="$TRAVIS_BUILD_DIR/vendor/bin:$PATH"
-    - FP_CLI_BIN_DIR="$TRAVIS_BUILD_DIR/vendor/bin"
+    - FIN_CLI_BIN_DIR="$TRAVIS_BUILD_DIR/vendor/bin"
 
 before_install:
   - |
@@ -50,34 +50,34 @@ jobs:
   include:
     - stage: test
       php: nightly
-      env: FP_VERSION=trunk
+      env: FIN_VERSION=trunk
     - stage: test
       php: 7.4
-      env: FP_VERSION=latest
+      env: FIN_VERSION=latest
     - stage: test
       php: 7.3
-      env: FP_VERSION=latest
+      env: FIN_VERSION=latest
     - stage: test
       php: 7.2
-      env: FP_VERSION=latest
+      env: FIN_VERSION=latest
     - stage: test
       php: 7.1
-      env: FP_VERSION=latest
+      env: FIN_VERSION=latest
     - stage: test
       php: 7.0
-      env: FP_VERSION=latest
+      env: FIN_VERSION=latest
     - stage: test
       php: 5.6
-      env: FP_VERSION=latest
+      env: FIN_VERSION=latest
     - stage: test
       php: 5.6
-      env: FP_VERSION=3.7.11
+      env: FIN_VERSION=3.7.11
       dist: trusty
     - stage: test
       php: 5.6
-      env: FP_VERSION=trunk
+      env: FIN_VERSION=trunk
 
   allow_failures:
     - stage: test
       php: nightly
-      env: FP_VERSION=trunk
+      env: FIN_VERSION=trunk

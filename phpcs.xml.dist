@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<ruleset name="FP-CLI">
-	<description>FinPress Coding Standards for FP-CLI</description>
+<ruleset name="FIN-CLI">
+	<description>FinPress Coding Standards for FIN-CLI</description>
 
 	<!-- Show sniff codes in all reports, and progress while running -->
 	<arg value="sp"/>
@@ -19,7 +19,7 @@
 	<rule ref="PHPCompatibility">
 		<!-- Polyfill package is used so array_column() is available for PHP 5.4- -->
 		<exclude name="PHPCompatibility.PHP.NewFunctions.array_columnFound"/>
-		<!-- Both magic quotes directives set in fp-settings-cli.php to provide consistent starting point. -->
+		<!-- Both magic quotes directives set in fin-settings-cli.php to provide consistent starting point. -->
 		<exclude name="PHPCompatibility.PHP.DeprecatedIniDirectives.magic_quotes_runtimeDeprecatedRemoved"/>
 		<exclude name="PHPCompatibility.PHP.DeprecatedIniDirectives.magic_quotes_sybaseDeprecatedRemoved"/>
 	</rule>
